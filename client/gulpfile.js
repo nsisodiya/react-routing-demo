@@ -62,4 +62,4 @@ gulp.task('css', function () {
 // Just running the two tasks
 gulp.task('build', ['browserify', 'css']);
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['browserify']);
