@@ -3,28 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>React Demo</title>
-	<script src="bower_components/react/react.js"></script>
-	<script src="bower_components/react/JSXTransformer.js"></script>
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="//localhost:35729/livereload.js"></script>
 </head>
 <body>
 
 	<div id="content"></div>
-	<script type="text/jsx">
-		// Your code here
-		var CommentBox = React.createClass({
-			render: function() {
-				return (
-						<div className="commentBox">
-							Hello, world! I am a CommentBox.
-						</div>
-				);
-			}
-		});
-		React.render(
-				<CommentBox />,
-				document.getElementById('content')
-		);
-	</script>
+	<script src="dist/app.js"></script>
 </body>
 </html>
