@@ -1,7 +1,4 @@
 import React from 'react';
-import CommentBox from './components/commentBox.jsx';
+import TodoApp from './components/commentBox.jsx';
 
-React.render(
-		<CommentBox />,
-		document.body
-);
+React.render(<TodoApp/>, document.getElementById("content"));
