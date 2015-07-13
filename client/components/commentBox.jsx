@@ -10,17 +10,26 @@ class TodoApp extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			todos: []
-		};
+		let lsState = localStorage.getItem("todoState");
+		console.log(lsState);
+		if (lsState === null) {
+			lsState = {
+				todos: []
+			}
+		} else {
+			lsState = JSON.parse(lsState);
+		}
+		this.state = lsState;
+	}
+	componentDidUpdate(prevProps, prevState) {
+		localStorage.setItem("todoState",JSON.stringify(this.state));
 	}
 	handelKeyDown(evt){
+		if(evt.key === "Enter" && this.refs.input.getDOMNode().value !== ""){
 
-		if(evt.key === "Enter"){
-			console.log();
 			this.state.todos.push({
 				taskName: this.refs.input.getDOMNode().value,
-				done: true
+				done: false
 			});
 			this.refs.input.getDOMNode().value = "";
 			this.setState({
@@ -40,6 +49,19 @@ class TodoApp extends Component {
 			return v.done === false;
 		}).length;
 	}
+	onDestroy(index){
+		this.state.todos.splice(index,1);
+		this.setState({
+			todos: this.state.todos
+		});
+	}
+	deleteAllCompleted(){
+		this.setState({
+			todos: this.state.todos.filter(function (v) {
+				return v.done === false;
+			})
+		});
+	}
 	render() {
 		var self = this;
 		return <div className="commentBox">
@@ -47,12 +69,13 @@ class TodoApp extends Component {
 				<div>
 					<ul>
 						{this.state.todos.map(function (v, i) {
-							return <TodoItem todoIndex={i} onToggle={self.handelToggle.bind(self)} todo={v}/>
+							return <TodoItem onDestroy={self.onDestroy.bind(self)} todoIndex={i} onToggle={self.handelToggle.bind(self)} todo={v}/>
 						})}
 					</ul>
 				</div>
 				<footer>
 						<span>{this.getItemLeftCount()} items left</span>
+						<button onClick={this.deleteAllCompleted.bind(this)} >Delete All Completed</button>
 				</footer>
 		</div>;
 	}

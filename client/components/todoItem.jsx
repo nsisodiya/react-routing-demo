@@ -8,14 +8,10 @@ class TodoItem extends Component {
 	constructor(props) {
 		super(props);
 	}
-	getItemLeftCount(){
-
-		return this.state.todos.filter(function (v) {
-			return v.done === false;
-		}).length;
-	}
 	render() {
-		return <li><input onChange={this.props.onToggle.bind(this, this.props.todoIndex)} checked={this.props.todo.done} type="checkbox"/> {this.props.todo.taskName}</li>;
+		return <li><input onChange={this.props.onToggle.bind(this, this.props.todoIndex)} checked={this.props.todo.done} type="checkbox"/> {this.props.todo.taskName}
+			<button className="destroy" onClick={this.props.onDestroy.bind(this, this.props.todoIndex)}>X</button>
+		</li>;
 	}
 }
 
