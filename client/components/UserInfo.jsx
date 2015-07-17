@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 
 import myusers from './listUsers';
+import routeEventBus from '../router/routeEventBus.js'
+import routeActions from '../router/RouteConstants.js'
 
 let styleImg = {
 	width: "50px",
-  float: "left",
+	float: "left",
 	margin: "20px"
 };
 class UserInfo extends Component {
@@ -15,23 +17,43 @@ class UserInfo extends Component {
 		this.state = {
 			selectedUser: userName
 		};
-	}
-	componentWillReceiveProps(prop){
-		let userName = prop.uid.split("/")[2];
-		this.setState({
-			selectedUser: userName
+		this.subID = routeEventBus.subscribe(routeActions.ROUTE_CHANGE_EVENT, (routePath, routeObj) => {
+			if (routePath === "/users/:id") {
+				let userName = window.location.pathname.split("/")[2];
+				this.setState({
+					selectedUser: userName
+				});
+			}
+			if (routePath === "/users") {
+				this.setState({
+					selectedUser: undefined
+				});
+			}
 		});
 	}
+
+	componentWillUnmount() {
+		routeEventBus.unsubscribe(this.subID);
+	}
+
 	render() {
-		var user = myusers.filter((v)=>{
+		console.log("Render UserInfo");
+		var user = myusers.filter((v)=> {
 			return v.twitter === this.state.selectedUser;
 		})[0];
-		return  <div>
-			<h1>{user.name}</h1>
-			<img style={styleImg} src={user.img} alt=""/>
-			<div><b>Twitter : </b><span><a href={"http://twitter.com/" + user.twitter}>{"http://twitter.com/" + user.twitter}</a></span></div>
-			<div><b>Github : </b><span><a href={"http://github.com/" + user.github}>{"http://github.com/" + user.github}</a></span></div>
-		</div> ;
+		if (user !== undefined) {
+			return <div>
+				<h1>{user.name}</h1>
+				<img style={styleImg} src={user.img} alt=""/>
+
+				<div><b>Twitter : </b><span><a href={"http://twitter.com/" + user.twitter}>{"http://twitter.com/" +
+				user.twitter}</a></span></div>
+				<div><b>Github : </b><span><a href={"http://github.com/" + user.github}>{"http://github.com/" +
+				user.github}</a></span></div>
+			</div>;
+		} else {
+			return <div>Please Select a User</div>
+		}
 	}
 }
 

@@ -28,6 +28,9 @@ class ContentArea extends Component {
 			componentResolver:"/"
 		};
 	}
+	shouldComponentUpdate(nextProps, nextState){
+		return JSON.stringify(this.state) !== JSON.stringify(nextState);
+  }
 	componentWillUnmount(){
 		routeEventBus.unsubscribe(this.subID);
 	}
