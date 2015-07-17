@@ -6,6 +6,10 @@ import UserInfo from './UserInfo.jsx';
 import routeEventBus from '../router/routeEventBus.js'
 import routeActions from '../router/RouteConstants.js'
 
+var userListStyle = {
+	width: "24%",
+	float: "left"
+};
 class UserList extends Component {
 	constructor(props) {
 		super(props);
@@ -39,7 +43,7 @@ class UserList extends Component {
 	}
 	render() {
 		return  <div>
-			<ul>{
+			<ul style={userListStyle}>{
 				myusers.map(user => {
 					return <li><a href={"/users/" + user.twitter}>{user.name}</a></li>
 				})

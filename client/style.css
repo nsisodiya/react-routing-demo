@@ -35,8 +35,6 @@ body {
 .userInfoBox {
 	padding: 10px;
 	border: 3px dashed black;
-	left: 37%;
-	position: relative;
-	width: 52%;
-	top: -54px;
+	width: 56%;
+	float: right;
 }
