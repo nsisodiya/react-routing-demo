@@ -7,7 +7,6 @@ import React, {Component} from 'react';
 import NavigationBar from "./NavigationBar.jsx";
 import ContentArea from "./ContentArea.jsx";
 
-require('../router/router.js');
 class App extends Component {
 	constructor(props) {
 		super(props);
