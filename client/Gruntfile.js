@@ -3,14 +3,8 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		watch: {
 			all: {
-				files: ['**/*.jsx'],
+				files: ['**/*.jsx', "**/*.js", "!dist/**"],
 				tasks: ['build'],
-				options: {
-					livereload: true
-				}
-			},
-			js: {
-				files: ["**/*.js", "!dist/**"],
 				options: {
 					livereload: true
 				}
