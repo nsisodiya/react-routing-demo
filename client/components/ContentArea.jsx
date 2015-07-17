@@ -11,27 +11,17 @@ class ContentArea extends Component {
 	constructor(props) {
 		super(props);
 		this.RouteMappings = {
-			"/about":{
-				component:  <About/>,
-				componentResolver: "/about"
-			},
-			"/users": {
-				component: <UserList/>,
-				componentResolver: "/users"
-			},
-			"/users/:id": {
-				component: <UserList/>,
-				componentResolver: "/users"
-			},
-			"/": {
-				component: <div>This is default Page, reloading.....</div>,
-				componentResolver:"/"
-			}
+			"/about": <About/>,
+			"/users": <UserList/>,
+			"/users/:id": <UserList/>,
+			"/": <div>This is default Page</div>,
 		};
 		this.subID = routeEventBus.subscribe(routeActions.ROUTE_CHANGE_EVENT, (routePath, routeObj) => {
-			this.setState({
-				componentResolver: this.RouteMappings[routePath].componentResolver
-			})
+			if(Object.keys(this.RouteMappings).indexOf(routePath) !== -1){
+				this.setState({
+					componentResolver: routePath
+				})
+			}
 		});
 
 		this.state = {
@@ -43,7 +33,7 @@ class ContentArea extends Component {
 	}
 	render() {
 		return  <div className="mainContentArea">
-			{this.RouteMappings[this.state.componentResolver].component}
+			{this.RouteMappings[this.state.componentResolver]}
 		</div>;
 	}
 }

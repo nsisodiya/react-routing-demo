@@ -23,14 +23,16 @@ class UserList extends Component {
 			}
 		};
 		this.subID = routeEventBus.subscribe(routeActions.ROUTE_CHANGE_EVENT, (routePath, routeObj) => {
-			this.setState({
-				url: routeObj.pathname,
-				componentResolver: routePath
-			});
+			if(Object.keys(this.RouteMappings).indexOf(routePath) !== -1){
+				this.setState({
+					url: routeObj.pathname,
+					componentResolver: routePath
+				});
+			}
 		});
 
 		var componentResolver = "/users";
-		if(window.location.pathname !== "/users"){
+		if(window.location.pathname.split("/")[1] === "users" && window.location.pathname.split("/")[2] !== undefined){
 			componentResolver = "/users/:id";
 		}
 		this.state = {
@@ -42,10 +44,12 @@ class UserList extends Component {
 		routeEventBus.unsubscribe(this.subID);
 	}
 	render() {
+		console.log("userList Render");
+		console.log(this.state);
 		return  <div>
 			<ul style={userListStyle}>{
 				myusers.map(user => {
-					return <li><a href={"/users/" + user.twitter}>{user.name}</a></li>
+					return <li key={user.twitter} ><a href={"/users/" + user.twitter}>{user.name}</a></li>
 				})
 			}
 			</ul>
