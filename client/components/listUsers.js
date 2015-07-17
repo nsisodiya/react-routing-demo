@@ -25,12 +25,12 @@ var users = [
 		name: "Evan Morikawa",
 		twitter: "e0m",
 		github: "emorikawa",
-		img: "http://raw.githubusercontent.com/react-europe/cfp-2015/applications-into-extensible-platforms/speaker1.jpg"
+		img: "http://raw.githubusercontent.com/react-europe/cfp-2015/master/applications-into-extensible-platforms/speaker1.jpg"
 	}, {
 		name: "Ben Gotow",
 		twitter: "bengotow",
 		github: "bengotow",
-		img: "http://raw.githubusercontent.com/react-europe/cfp-2015/applications-into-extensible-platforms/speaker2.jpg"
+		img: "http://raw.githubusercontent.com/react-europe/cfp-2015/master/applications-into-extensible-platforms/speaker2.jpg"
 	}
 ];
 
