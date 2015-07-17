@@ -13,30 +13,29 @@ class ContentArea extends Component {
 		this.RouteMappings = {
 			"/about":{
 				component:  <About/>,
-				state: "/about"
+				componentResolver: "/about"
 			},
 			"/users": {
-				component:<UserList/>,
-				state: "/users"
+				component: <UserList/>,
+				componentResolver: "/users"
 			},
 			"/users/:id": {
 				component: <UserList/>,
-				state: "/users"
+				componentResolver: "/users"
 			},
 			"/": {
 				component: <div>This is default Page, reloading.....</div>,
-				state:"/"
+				componentResolver:"/"
 			}
 		};
 		this.subID = routeEventBus.subscribe(routeActions.ROUTE_CHANGE_EVENT, (routePath, routeObj) => {
-			//console.log(routePath);
 			this.setState({
-				currentRoute: this.RouteMappings[routePath].state
+				componentResolver: this.RouteMappings[routePath].componentResolver
 			})
 		});
 
 		this.state = {
-			currentRoute:"/"
+			componentResolver:"/"
 		};
 	}
 	componentWillUnmount(){
@@ -44,7 +43,7 @@ class ContentArea extends Component {
 	}
 	render() {
 		return  <div className="mainContentArea">
-			{this.RouteMappings[this.state.currentRoute].component}
+			{this.RouteMappings[this.state.componentResolver].component}
 		</div>;
 	}
 }

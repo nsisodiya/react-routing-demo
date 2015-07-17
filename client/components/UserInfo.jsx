@@ -10,16 +10,13 @@ let styleImg = {
 class UserInfo extends Component {
 	constructor(props) {
 		super(props);
-		console.log(props);
 		let userName = window.location.pathname.split("/")[2];
 
 		this.state = {
 			selectedUser: userName
 		};
-		console.log(window.location.pathname);
 	}
 	componentWillReceiveProps(prop){
-		console.log(prop);
 		let userName = prop.uid.split("/")[2];
 		this.setState({
 			selectedUser: userName

@@ -11,7 +11,6 @@ class TodoApp extends Component {
 		super(props);
 
 		let lsState = localStorage.getItem("todoState");
-		console.log(lsState);
 		if (lsState === null) {
 			lsState = {
 				todos: []

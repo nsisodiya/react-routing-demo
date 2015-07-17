@@ -12,7 +12,6 @@ class UserList extends Component {
 
 		this.RouteMappings = {
 			"/users/:id": () => {
-				console.log("called");
 				return <UserInfo uid={this.state.url}/>;
 			},
 			"/users": () => {
@@ -20,12 +19,10 @@ class UserList extends Component {
 			}
 		};
 		this.subID = routeEventBus.subscribe(routeActions.ROUTE_CHANGE_EVENT, (routePath, routeObj) => {
-			//console.log(routePath);
 			this.setState({
 				url: routeObj.pathname,
 				componentResolver: routePath
 			});
-			console.log("new state", this.state);
 		});
 
 		var componentResolver = "/users";

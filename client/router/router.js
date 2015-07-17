@@ -15,8 +15,6 @@ const routes = [
 
 routes.map((key) => {
 	page(key, (routeObj)=>{
-		console.log(routeObj);
-		console.log(arguments);
 		window.setTimeout(()=>{
 			routeEventBus.publish(routeActions.ROUTE_CHANGE_EVENT, key, routeObj);
 		});
