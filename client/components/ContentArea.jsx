@@ -4,7 +4,6 @@ import UserList from './UserList.jsx';
 import About from './About.jsx';
 
 import routeEventBus from '../router/routeEventBus.js'
-import routeActions from '../router/RouteConstants.js'
 
 
 class ContentArea extends Component {
@@ -16,15 +15,13 @@ class ContentArea extends Component {
 			"/users/:id": <UserList/>,
 			"/": <div>This is default Page</div>,
 		};
-		this.subID = routeEventBus.subscribe(routeActions.ROUTE_CHANGE_EVENT, (routePath, routeObj) => {
-			if(Object.keys(this.RouteMappings).indexOf(routePath) !== -1){
-				if(routePath === "/users/:id"){
-					routePath = "/users";
-				}
-				this.setState({
-					componentResolver: routePath
-				})
+		this.subID = routeEventBus.subscribe(Object.keys(this.RouteMappings), (routePath, routeObj) => {
+			if (routePath === "/users/:id") {
+				routePath = "/users";
 			}
+			this.setState({
+				componentResolver: routePath
+			})
 		});
 
 		this.state = {

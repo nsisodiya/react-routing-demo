@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import myusers from './listUsers';
 import routeEventBus from '../router/routeEventBus.js'
-import routeActions from '../router/RouteConstants.js'
 
 let styleImg = {
 	width: "50px",
@@ -17,18 +16,11 @@ class UserInfo extends Component {
 		this.state = {
 			selectedUser: userName
 		};
-		this.subID = routeEventBus.subscribe(routeActions.ROUTE_CHANGE_EVENT, (routePath, routeObj) => {
-			if (routePath === "/users/:id") {
-				let userName = window.location.pathname.split("/")[2];
-				this.setState({
-					selectedUser: userName
-				});
-			}
-			if (routePath === "/users") {
-				this.setState({
-					selectedUser: undefined
-				});
-			}
+		this.subID = routeEventBus.subscribe(["/users/:id", "/users"], (routePath, routeObj) => {
+			let userName = window.location.pathname.split("/")[2];
+			this.setState({
+				selectedUser: userName
+			});
 		});
 	}
 	shouldComponentUpdate(nextProps, nextState){
