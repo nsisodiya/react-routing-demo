@@ -18,6 +18,9 @@ class ContentArea extends Component {
 		};
 		this.subID = routeEventBus.subscribe(routeActions.ROUTE_CHANGE_EVENT, (routePath, routeObj) => {
 			if(Object.keys(this.RouteMappings).indexOf(routePath) !== -1){
+				if(routePath === "/users/:id"){
+					routePath = "/users";
+				}
 				this.setState({
 					componentResolver: routePath
 				})

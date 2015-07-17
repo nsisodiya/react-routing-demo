@@ -31,7 +31,9 @@ class UserInfo extends Component {
 			}
 		});
 	}
-
+	shouldComponentUpdate(nextProps, nextState){
+		return JSON.stringify(this.state) !== JSON.stringify(nextState);
+	}
 	componentWillUnmount() {
 		routeEventBus.unsubscribe(this.subID);
 	}
