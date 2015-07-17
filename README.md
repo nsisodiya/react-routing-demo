@@ -1,6 +1,18 @@
 # reactdemo
 just trying out a simple SPA application with react to learn react.js
 
+# how to test page.js routing with react.js
+
+```bash
+clone the project
+cd client
+npm install
+grunt build
+grunt
+http-server
+```
+open index.html
+
 
 # What this app do
    TODO
