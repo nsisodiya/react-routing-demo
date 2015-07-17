@@ -5,8 +5,8 @@ class NavigationBar extends Component {
 		super(props);
 	}
 	render() {
-		return  <div>
-			<ul>
+		return  <div className="nav">
+			<ul >
 			<li><a href="/users">Users</a></li>
 			<li><a href="/about">About</a></li>
 			</ul>

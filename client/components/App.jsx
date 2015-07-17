@@ -4,11 +4,10 @@
 
 
 import React, {Component} from 'react';
-import page from 'page';
 import NavigationBar from "./NavigationBar.jsx";
 import ContentArea from "./ContentArea.jsx";
 
-console.log(page);
+require('../router/router.js');
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -20,7 +19,4 @@ class App extends Component {
 		</div> ;
 	}
 }
-
-page();
-
 export default App;
