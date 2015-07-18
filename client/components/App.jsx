@@ -6,6 +6,7 @@
 import React, {Component} from 'react';
 import NavigationBar from "./NavigationBar.jsx";
 import ContentArea from "./ContentArea.jsx";
+import ForkMe from "./ForkMe.jsx";
 
 import allRoutes from './allRoutes.js';
 
@@ -20,6 +21,7 @@ class App extends Component {
 
 	render() {
 		return <div>
+			<ForkMe repo="https://github.com/nsisodiya/react-routing-demo"></ForkMe>
 			<NavigationBar/>
 			<ContentArea/>
 		</div>;
