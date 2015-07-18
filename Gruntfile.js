@@ -15,26 +15,10 @@ module.exports = function(grunt) {
 					livereload: true
 				}
 			}
-		},
-		browserify: {
-			options: {
-				watch: true,
-				debug:true,
-				transform: [
-					'babelify'
-				]
-			},
-			dist: {
-				files: {
-					'dist/app.js': 'index.jsx'
-				}
-			}
 		}
 	});
-	grunt.loadNpmTasks("grunt-browserify");
 	grunt.loadNpmTasks("grunt-contrib-watch");
 
 
-	grunt.registerTask("build", ["browserify"]);
 	grunt.registerTask("default", ["watch"]);
 };
