@@ -13,7 +13,7 @@ class ContentArea extends Component {
 			"/about": <About/>,
 			"/users": <UserList/>,
 			"/users/:id": <UserList/>,
-			"/": <div>This is default Page</div>,
+			"/": <div>This is default Page.</div>,
 		};
 		this.subID = routeEventBus.subscribe(Object.keys(this.RouteMappings), (routePath, routeObj) => {
 			if (routePath === "/users/:id") {
